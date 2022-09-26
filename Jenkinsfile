@@ -19,7 +19,7 @@ pipeline {
         }
 
         stage('Stage3'){
-            when { changeset "server/**"} //Will execute your steps if any file change inside the component_a directory
+            when { changeset "Jenkinsfile"} //Will execute your steps if any file change inside the component_a directory
             steps{
                 echo "Echoing Stage 3"
             }
