@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Stage1'){
             steps{
-                when { changeset "*/server/*"} //Will execute your steps if any file change inside the component_a directory
+                when { changeset "server/*"} //Will execute your steps if any file change inside the component_a directory
                 echo "Echoing Stage  first 1 "
             }
         }
