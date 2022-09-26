@@ -14,7 +14,7 @@ pipeline {
 
         stage('Stage2'){
             steps{
-                echo "Echoing Stage 12"
+                echo "Echoing Stage 2"
             }
         }
     }
