@@ -17,5 +17,11 @@ pipeline {
                 echo "Echoing Stage 2"
             }
         }
+
+        stage('Stage3'){
+            steps{
+                echo "Echoing Stage 3"
+            }
+        }
     }
 }
