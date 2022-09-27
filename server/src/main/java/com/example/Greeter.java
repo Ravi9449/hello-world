@@ -1,7 +1,7 @@
 package com.example;
 
 /**
- * This is a worldest desmo classes.
+ * This is a classes.
  */
 public class Greeter {
 
