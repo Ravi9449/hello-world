@@ -19,7 +19,7 @@ pipeline {
         }
 
         stage('Stage3'){
-            when { changeset "**/*.java" } 
+            when { changeset "/server/**.*" } 
             steps{
                 echo "Echoing Stage third 3"
             }
