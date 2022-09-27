@@ -7,9 +7,9 @@ pipeline {
 
     stages {
         stage('Stage1'){
-            when { changeset "Jenkinsfile" } 
+            when { changeset "webapp/*.xml" } 
             steps{
-                currentBuild.result = 'SUCCESS'
+                echo "Echoing Stage second 1"
             }
         }
 
