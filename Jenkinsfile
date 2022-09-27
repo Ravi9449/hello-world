@@ -9,9 +9,6 @@ pipeline {
         stage('Stage1'){
             when { changeset "/server/**.*" } 
             steps{
-                currentBuild.result = 'SUCCESS'
-                return
-
                 echo "Echoing Stage  first 1 "
             }
         }
@@ -23,7 +20,6 @@ pipeline {
         }
 
         stage('Stage3'){
-            when { changeset "/server/**.*" } 
             steps{
                 echo "Echoing Stage third 3"
             }
