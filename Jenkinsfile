@@ -7,7 +7,7 @@ pipeline {
 
     stages {
         stage('Stage1'){
-            when { changeset "webapp/*.xml" } 
+            when { changeset "webapp/*.*" } 
             steps{
                 echo "Echoing Stage second 1"
             }
