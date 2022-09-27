@@ -7,7 +7,7 @@ pipeline {
 
     stages {
         stage('Stage1'){
-            when { changeset "*/server/**" } 
+            when { changeset "Jenkinsfile" } 
             steps{
                 echo "Echoing Stage  first 1 "
             }
