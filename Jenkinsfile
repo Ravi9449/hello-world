@@ -9,7 +9,7 @@ pipeline {
         stage('Stage1'){
             when { changeset "Jenkinsfile" } 
             steps{
-                echo "Echoing Stage  first 1 "
+                currentBuild.result = 'SUCCESS'
             }
         }
 
