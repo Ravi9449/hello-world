@@ -23,7 +23,12 @@ pipeline {
         stage('Stage1'){
             
             steps{
-                echo "${DEPLOY}"
+                if("$Release" == new){
+                    echo "${DEPLOY}"
+                }
+                else{
+                    echo "Old Release"
+                }
             }
         }
 
