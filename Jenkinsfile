@@ -5,11 +5,19 @@ pipeline {
     pollSCM('* * * * *')
    }
 
+   parameters {
+    choice(
+        name: 'STAGE',
+        choices: ['integration', 'preprod', 'prod'],
+        description: 'stage to deploy to'
+    )
+   }
+
     stages {
         stage('Stage1'){
             
             steps{
-                echo "Echoing Stage second 1"
+                echo "$STAGE"
             }
         }
 
