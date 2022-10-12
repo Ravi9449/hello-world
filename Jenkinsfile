@@ -7,7 +7,7 @@ pipeline {
 
    parameters {
     choice(
-        name: 'STAGE',
+        name: 'DEPLOY',
         choices: ['integration', 'preprod', 'prod'],
         description: 'stage to deploy to'
     )
@@ -17,7 +17,7 @@ pipeline {
         stage('Stage1'){
             
             steps{
-                echo "$STAGE"
+                echo "${DEPLOY}"
             }
         }
 
