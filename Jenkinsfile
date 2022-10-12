@@ -11,6 +11,12 @@ pipeline {
         choices: ['integration', 'preprod', 'prod'],
         description: 'stage to deploy to'
     )
+
+    choice(
+        name: 'Release',
+        choices: ['old', 'new'],
+        description: 'type of release'
+    )
    }
 
     stages {
