@@ -4,8 +4,8 @@ pipeline {
       stage('Stage1'){
          steps{
             script{
-               sh 'pwd',
-                  ls
+               sh 'pwd'
+                  
             }
          }
       }
