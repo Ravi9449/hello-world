@@ -7,7 +7,7 @@ pipeline {
       stage('Stage1'){
          steps{
             script{
-               echo "Hello World in Master"
+               echo "Hello World in Master check 1"
             }
          }
       }
