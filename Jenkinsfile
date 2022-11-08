@@ -4,8 +4,7 @@ pipeline {
       stage('Stage1'){
          steps{
             script{
-               sh 'pwd'
-                  
+               echo "Hello World in Master"
             }
          }
       }
