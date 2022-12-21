@@ -11,6 +11,12 @@ pipeline {
             }
          }
       }
+
+      stage('Add tag name'){
+         steps{
+            scripts{
+               git tag v3.0 v2.0
+      }
    }   
 }
 
