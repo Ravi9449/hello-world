@@ -15,7 +15,7 @@ pipeline {
       stage('Add tag name'){
          steps{
             scripts{
-               sh git tag v3.0 v2.0
+               sh git tag v3.0 
             }
          }
       }  
