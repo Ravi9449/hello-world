@@ -20,7 +20,9 @@ pipeline {
                   version=${version_line#*>}
                   pomversion=${version%-*}
                ''')
-               
+               script_output = script_output.trim()
+               echo "${script_output}"
+
                // script_output = script_output.trim()
                // VAR_NAME = script_output
                // echo "VAR_NAME is ${VAR_NAME}"
@@ -32,7 +34,7 @@ pipeline {
                // pomversion=${version%-*}
                // ''', returnStatus: true
 
-               echo "${script_output}"
+               
                
                // sh 'version_line=$(cat pom.xml | grep "<version>" | head -1)'
                // sh 'version=${version_line#*>}'
