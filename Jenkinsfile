@@ -21,6 +21,7 @@ pipeline {
                // echo "${version}"
                // env.pomversion=${version%-*}''', returnStdout: true
                sh "ls"
+               sh "version_line=$(cat pom.xml | grep "<version>" | head -1)"
 
             }
          }
