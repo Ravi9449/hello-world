@@ -25,7 +25,7 @@ pipeline {
                
                sh 'version_line=$(cat pom.xml | grep "<version>" | head -1)'
                sh 'version=${version_line#*>}'
-               sh 'pomversion=${version%-*}'
+               sh 'export pomversion=${version%-*}'
                echo "${pomversion}"
 
             }
