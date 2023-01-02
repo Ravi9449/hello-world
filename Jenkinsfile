@@ -19,7 +19,7 @@ pipeline {
                echo "${version_line}"
                version=${version_line#*>}
                echo "${version}"
-               pomversion=${version%-*}''', returnStdout: true
+               export pomversion=${version%-*}''', returnStdout: true
             }
          }
       }
