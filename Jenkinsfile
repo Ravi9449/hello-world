@@ -24,7 +24,7 @@ pipeline {
          }
       }
 
-      stage(check pom version){
+      stage('check pom version'){
          steps{
             script{
                echo "${pomversion}"
