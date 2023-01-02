@@ -12,10 +12,27 @@ pipeline {
          }
       }
 
-      stage('Add tag name'){
+      stage('get pom version'){
          steps{
             scripts{
-               sh git tag v3.0 
+               sh version_line=$(cat pom.xml | grep "<version>" | head -1)
+               echo $"{version_line}"
+
+               sh version=${version_line#*>} 
+ 
+               echo $"{version}"
+
+               sh pomversion=${version%-*}
+
+               echo $"{pomversion}"
+            }
+         }
+      }
+
+      stage(check pom version){
+         steps{
+            script{
+               echo $"{pomversion}"
             }
          }
       }  
