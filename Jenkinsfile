@@ -14,7 +14,7 @@ pipeline {
 
       stage('get pom version'){
          steps{
-            scripts{
+            script{
                sh "version_line=$(cat pom.xml | grep "<version>" | head -1)"
                echo $"{version_line}"
 
