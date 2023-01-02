@@ -15,13 +15,23 @@ pipeline {
       stage('get pom version'){
          steps{
             script{
-               sh script: '''
-               version_line=$(cat pom.xml | grep "<version>" | head -1)
-               echo ${version_line}
-               version=${version_line#*>}
-               echo ${version}
-               export pomversion=${version%-*}
-               ''', returnStatus: true
+                def script_output = sh(returnStdout: true, script: """
+                  #!/bin/bash
+                  set -e
+                  set +x
+                  VAR_NAME=10
+                  echo \$VAR_NAME
+               """)
+               script_output = script_output.trim()
+               VAR_NAME = script_output
+               echo "VAR_NAME is ${VAR_NAME}"
+               // sh script: '''
+               // version_line=$(cat pom.xml | grep "<version>" | head -1)
+               // echo ${version_line}
+               // version=${version_line#*>}
+               // echo ${version}
+               // pomversion=${version%-*}
+               // ''', returnStatus: true
 
                echo "${pomversion}"
                
