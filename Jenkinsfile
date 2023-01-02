@@ -15,16 +15,12 @@ pipeline {
       stage('get pom version'){
          steps{
             script{
-               sh "version_line=$(cat pom.xml | grep "<version>" | head -1)"
-               echo $"{version_line}"
-
-               sh "version=${version_line#*>}"
- 
-               echo $"{version}"
-
-               sh "pomversion=${version%-*}"
-
-               echo $"{pomversion}"
+               sh script'''version_line=$(cat pom.xml | grep "<version>" | head -1)
+               echo "${version_line}"
+               version=${version_line#*>}
+               echo "${version}"
+               pomversion=${version%-*}
+               echo "${pomversion}"''', returnStdout: true
             }
          }
       }
@@ -32,7 +28,7 @@ pipeline {
       stage(check pom version){
          steps{
             script{
-               echo $"{pomversion}"
+               echo "${pomversion}"
             }
          }
       }  
