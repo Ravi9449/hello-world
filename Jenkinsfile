@@ -11,7 +11,7 @@ pipeline {
          steps{
             script{
                readPom = readMavenPom file:'pom.xml'
-               RELEASE_BRANCH = sh script : 'echo ${readPom}', returnStdout: true
+               RELEASE_BRANCH = sh script : 'echo ${readPom.version}', returnStdout: true
                echo "${RELEASE_BRANCH}"
             }
          }
