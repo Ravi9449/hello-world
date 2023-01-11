@@ -11,7 +11,7 @@ pipeline {
          steps{
             script{
                readPom = readMavenPom file:'pom.xml'
-               echo "${readPom}"
+               echo "${readPom.version.replace('-SNAPSHOT', '')}"
             }
          }
       }
