@@ -10,18 +10,12 @@ pipeline {
       stage('Stage1'){
          steps{
             script{
-               echo "Hello World in Master check 1"
+               readPom = readMavenPom file:'pom.xml'
+               cat $readPom
             }
          }
       }
 
-      stage('get pom version'){
-         steps{
-            script{
-               sh "mvn build-helper:parse-version versions:set -DnewVersion=\\\${parsedVersion.majorVersion}.\\\${parsedVersion.minorVersion}.\\\${parsedVersion.nextIncrementalVersion} versions:commit"
-            }
-         }
-      } 
    } 
 }
 
