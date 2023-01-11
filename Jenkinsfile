@@ -11,7 +11,7 @@ pipeline {
          steps{
             script{
                readPom = readMavenPom file:'pom.xml'
-               cat $readPom
+               echo "${readPom}"
             }
          }
       }
