@@ -11,7 +11,8 @@ pipeline {
          steps{
             script{
                readPom = readMavenPom file:'pom.xml'
-               echo "${readPom.version.replace('*-SNAPSHOT', '')}"
+               RELEASE_BRANCH = sh script : 'echo ${readPom}', returnStdout: true
+               echo "${RELEASE_BRANCH}"
             }
          }
       }
