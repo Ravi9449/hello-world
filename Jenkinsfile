@@ -1,8 +1,8 @@
 pipeline {
    agent any
-   triggers {
-        pollSCM('* * * * *')
-   }
+   //triggers {
+   //     pollSCM('* * * * *')
+   //}
    stages {
       stage('Stage1'){
          steps{
@@ -15,7 +15,7 @@ pipeline {
       stage('get pom version'){
          steps{
             script{
-               sh "mvn build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} versions:commit"
+               sh "mvn build-helper:parse-version versions:set -DnewVersion=/\\${parsedVersion.majorVersion}./\\${parsedVersion.minorVersion}./\\${parsedVersion.nextIncrementalVersion} versions:commit"
             }
          }
       } 
