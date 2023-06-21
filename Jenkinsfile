@@ -25,7 +25,7 @@ properties([
                  script: [
                      script:
                          ''' if (GitTagOption.equals("Use existing git tag")){
-                                def command = "git tag";
+                                def command = "git tag -l"
                                 def process = command.execute();
                                 return process.text.readLines()
                             }
