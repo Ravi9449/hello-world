@@ -26,9 +26,8 @@ properties([
                      script:
                          ''' if (GitTagOption.equals("Use existing git tag")){
                                 def tags = []
-                                sh(returnStdout: true, script: 'git tag -l').split('\\n').each {
-                                    tags << it.trim()
-                                }
+                                sh(returnStdout: true, script: 'git tag -l > git_tags.txt')
+                                tags = readFile('git_tags.txt').readLines()
                                 return tags
                             }
                             else {
