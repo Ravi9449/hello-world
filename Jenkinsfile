@@ -25,7 +25,7 @@ properties([
                  script: [
                      script:
                          ''' if (GitTagOption.equals("Use existing git tag")){
-                                def tags = sh(returnStdout: true, script: 'git tag -l').trim().split('\n')
+                                def tags = sh(returnStdout: true, script: 'git tag -l').trim()
                                 return tags
                             }
                             else {
