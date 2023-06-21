@@ -25,14 +25,11 @@ properties([
                  script: [
                      script:
                          ''' if (GitTagOption.equals("Use existing git tag")){
-                                def tags = []
-                                def command = "git tag -l"
-                                def process = command.execute(null, new File('.'))
-                                process.in.eachLine { line ->
-                                    tags.add(line.trim())
+                                def command = "git ls-remote --tags --sort=-creatordate https://github.com/Ravi9449/hello-world.git";
+                                def process = ["ssh-agent", "bash", "-c", command].execute();
+                                return process.text.readLines().collect {
+                                    it.split()[1].replaceAll('refs/heads/', '').replaceAll('refs/tags/', '')
                                 }
-                                process.waitFor()
-                                return tags
                             }
                             else {
                                 def command = "git ls-remote --heads https://github.com/Ravi9449/hello-world.git 'release*'";
