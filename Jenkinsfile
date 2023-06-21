@@ -25,7 +25,9 @@ properties([
                  script: [
                      script:
                          ''' if (GitTagOption.equals("Use existing git tag")){
-                                return "git tag"
+                                def command = "git tag";
+                                def process = command.execute();
+                                return process.text.readLines()
                             }
                             else {
                                 def command = "git ls-remote --heads https://github.com/Ravi9449/hello-world.git 'release*'";
