@@ -28,7 +28,7 @@ properties([
                                 def command = "git tag -l";
                                 def process = command.execute();
                                 return process.text.readLines().collect {
-                                    it.split()[1])
+                                    it.split()[1]
                                 }
                             }
                             else {
