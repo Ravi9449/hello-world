@@ -29,11 +29,15 @@ properties([
                                 def process = ["ssh-agent", "bash", "-c", command].execute();
                                 def result = process.text.readLines().collect {
                                                     it.split()[1].replaceAll('refs/heads/', '').replaceAll('refs/tags/', '')
-                                                    }.collect { tag -> 
-                                                    if (tag.startsWith("dev")){
-                                                        tag.reverse()
-                                                    } else {
-                                                        tag
+                                                    }.sort { a, b -> 
+                                                    if (a.startsWith("dev") && b.startsWith("dev)){
+                                                        0
+                                                    } else if (a.startsWith("dev")){
+                                                        -1
+                                                    } else if (b.startsWith("dev")){
+                                                        1
+                                                    } else{
+                                                        a <=>b
                                                     }}
                                 return result
                         
