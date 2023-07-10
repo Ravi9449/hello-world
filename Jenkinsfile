@@ -31,9 +31,9 @@ properties([
                                                     it.split()[1].replaceAll('refs/heads/', '').replaceAll('refs/tags/', '')
                                                     }.collect { tag -> 
                                                     if (tag.startsWith("dev")){
-                                                        tag
-                                                    } else {
                                                         tag.reverse()
+                                                    } else {
+                                                        tag
                                                     }}
                                 return result
                         
