@@ -30,7 +30,7 @@ properties([
                                 def result = process.text.readLines().collect {
                                                     it.split()[1].replaceAll('refs/heads/', '').replaceAll('refs/tags/', '')}.reverse()
                                 return result
-                                    }
+                        
                             }
                             else {
                                 def command = "git ls-remote --heads https://github.com/Ravi9449/hello-world.git 'release*'";
