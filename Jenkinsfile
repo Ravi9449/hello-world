@@ -28,7 +28,13 @@ properties([
                                 def command = "git ls-remote -t https://github.com/Ravi9449/hello-world.git";
                                 def process = ["ssh-agent", "bash", "-c", command].execute();
                                 def result = process.text.readLines().collect {
-                                                    it.split()[1].replaceAll('refs/heads/', '').replaceAll('refs/tags/', '')}.reverse()
+                                                    it.split()[1].replaceAll('refs/heads/', '').replaceAll('refs/tags/', '')
+                                                    }.collect { tag -> 
+                                                    if (tag.startsWith("dev")){
+                                                        tag
+                                                    } else {
+                                                        tag.reverse()
+                                                    }}
                                 return result
                         
                             }
