@@ -5,8 +5,9 @@ pipeline {
             steps{
                 script {
                     //TAG_PREFIX = env.BRANCH_NAME | grep -oE 'PAP-[0-9]{4}'
-                    TAG_PREFIX = env.BRANCH_NAME | grep -oE PAP-[0-9]{4} 
-                    echo "${TAG_PREFIX}"
+                    env.TAG_PREFIX = env.BRANCH_NAME  
+                    def TAG = sh(returnStdout: true, script: echo "${TAG_PREFIX}" | grep -oE "PAP-[0-9]{4}")
+                    echo "${TAG}"
                 }
             }
         }
