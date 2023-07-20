@@ -6,7 +6,7 @@ pipeline {
                 script {
                     //TAG_PREFIX = git branch --show-current | grep -oE 'PAP-[0-9]{4}'
                     //def TAG = sh(returnStdout: true, script: git branch --show-current | grep -oE 'PAP-[0-9]{4}')
-                    def TAG_PREFIX = sh(returnStdout: true, script: 'git branch --show-current | grep -oE 'PAP-[0-9]{4}'').trim()
+                    def TAG_PREFIX = sh(returnStdout: true, script: "git branch --show-current | grep -oE 'PAP-[0-9]{4}'").trim()
                     echo "${TAG_PREFIX}"
                 }
             }
