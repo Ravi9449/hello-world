@@ -4,10 +4,10 @@ pipeline {
         stage('Check'){
             steps{
                 script {
-                    //TAG_PREFIX = env.BRANCH_NAME | grep -oE 'PAP-[0-9]{4}'
-                    env.TAG_PREFIX = env.BRANCH_NAME  
-                    def TAG = sh(returnStdout: true, script: echo "${TAG_PREFIX}" | grep -oE "PAP-[0-9]{4}")
-                    echo "${TAG}"
+                    //TAG_PREFIX = git branch --show-current | grep -oE 'PAP-[0-9]{4}'
+                    //def TAG = sh(returnStdout: true, script: git branch --show-current | grep -oE 'PAP-[0-9]{4}')
+                    def TAG_PREFIX = sh(returnStdout: true, script: 'git branch --show-current | grep -oE 'PAP-[0-9]{4}'').trim()
+                    echo "${TAG_PREFIX}"
                 }
             }
         }
