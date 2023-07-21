@@ -1,84 +1,13 @@
 #!groovy
 
-properties([
-    parameters([
-        [$class: 'ChoiceParameter',
-            choiceType: 'PT_SINGLE_SELECT',
-            description: 'Select Deployment for : Existing or New Tag',
-            name: 'GitTagOption',
-            script: [
-                $class: 'GroovyScript',
-                script: [
-                    script:
-                        'return["Use existing git tag", "create new git tag"]'
-                ]
-            ]
-        ],
-        [$class: 'CascadeChoiceParameter',
-             choiceType: 'PT_SINGLE_SELECT',
-             filterLength: 1,
-             filterable: true,
-             name: 'GitSelection',
-             referencedParameters: 'GitTagOption',
-             script: [
-                 $class: 'GroovyScript',
-                 script: [
-                     script:
-                         ''' if (GitTagOption.equals("Use existing git tag")){
-                                def command = "git ls-remote -t https://github.com/Ravi9449/hello-world.git";
-                                def process = ["ssh-agent", "bash", "-c", command].execute();
-                                def result = process.text.readLines().collect {
-                                                    it.split()[1].replaceAll('refs/heads/', '').replaceAll('refs/tags/', '')
-                                                    }.sort { a, b -> 
-                                                    if (a.startsWith("dev") && b.startsWith("dev)){
-                                                        0
-                                                    } else if (a.startsWith("dev")){
-                                                        -1
-                                                    } else if (b.startsWith("dev")){
-                                                        1
-                                                    } else{
-                                                        a <=>b
-                                                    }}
-                                return result
-                        
-                            }
-                            else {
-                                def command = "git ls-remote --heads https://github.com/Ravi9449/hello-world.git 'release*'";
-                                def process = ["ssh-agent", "bash", "-c", command].execute();
-                                return process.text.readLines().collect {
-                                    it.split()[1].replaceAll('refs/heads/', '').replaceAll('refs/tags/', '')
-                                }
-                            }
-                        '''
-                 ]
-             ]
-        ],
-
-        [$class: 'CascadeChoiceParameter',
-            choiceType: 'PT_SINGLE_SELECT',
-            name: 'Stage',
-            referencedParameters: 'GitSelection',
-            script: [
-                $class: 'GroovyScript',
-                script: [
-                    script:
-                        ''' if (GitSelection.contains("release")){
-                                return["integration", "review", "test", "preprod", "prod"]
-                            } else {
-                                return["integration", "review", "test", "preprod", "prod"]
-                            }
-                        '''
-                ]
-            ]
-        ]
-    ])
-])
-
 pipeline {
    agent any
-   //triggers {
-   //     pollSCM('* * * * *')
-   //}
+   parameters {
+        gitParameter name: 'TAG',
+                     sortMode: 'Descending',
+                     type: 'PT_BRANCH_TAG',
+                     defaultValue: 'master'
+    }
    tools {
       maven 'maven'
    }
