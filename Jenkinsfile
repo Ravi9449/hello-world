@@ -4,7 +4,7 @@ pipeline {
    agent any
    parameters {
         gitParameter name: 'TAG',
-                     sortMode: 'Descending',
+                     sortMode: 'DESCENDING',
                      type: 'PT_BRANCH_TAG',
                      defaultValue: 'master'
     }
