@@ -5,7 +5,7 @@ pipeline {
    parameters {
         gitParameter name: 'TAG',
                      sortMode: 'DESCENDING',
-                     type: 'PT_BRANCH_TAG',
+                     type: 'PT_TAG',
                      defaultValue: 'master'
     }
    tools {
