@@ -30,7 +30,7 @@ pipeline {
          steps{
             script{
                 echo "${params.CHECK}"
-                sh 'cd /Users/ravi/Desktop/J/SAP && rm -rf {params.CHECK}' 
+                sh "cd /Users/ravi/Desktop/J/SAP && rm -rf ${params.CHECK}"
                 
             }
          }
