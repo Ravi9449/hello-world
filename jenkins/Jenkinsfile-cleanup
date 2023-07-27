@@ -29,7 +29,9 @@ pipeline {
       stage('Stage1'){
          steps{
             script{
-               echo "${params.CHECK}"
+                echo "${params.CHECK}"
+                sh 'cd /Users/ravi/Desktop/J/SAP && rm -rf ${params.CHECK}' 
+                
             }
          }
       }
