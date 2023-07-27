@@ -9,12 +9,14 @@ properties([
                 $class: 'GroovyScript',
                 script: [
                     script:
-                    import static groovy.io.FileType.DIRECTORIES
-                    def list = []
-                    new File('//Users/ravi/Desktop').eachFileRecurse (DIRECTORIES) { file ->
-                        list << file.name
-                    }
-                    return list
+                    '''
+                        import static groovy.io.FileType.DIRECTORIES
+                        def list = []
+                        new File('//Users/ravi/Desktop').eachFileRecurse (DIRECTORIES) { file ->
+                            list << file.name
+                        }
+                        return list
+                    '''
                 ]
             ]]
     ])
