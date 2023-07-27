@@ -29,7 +29,7 @@ pipeline {
       stage('Stage1'){
          steps{
             script{
-               echo "${currentBuild.projectName}"
+               echo "${params.CHECK}"
             }
          }
       }
