@@ -12,7 +12,7 @@ properties([
                     '''
                         import static groovy.io.FileType.DIRECTORIES
                         def list = []
-                        new File('/Users/ravi/Desktop').eachFileRecurse (DIRECTORIES) { file ->
+                        new File('/Users/ravi/Desktop/J/SAP').eachFileRecurse (DIRECTORIES) { file ->
                             list << file.name
                         }
                         return list
