@@ -1,0 +1,36 @@
+#!groovy
+
+properties([
+    parameters([
+        [$class: 'ChoiceParameter',
+            choiceType: 'PT_SINGLE_SELECT'
+            name: 'CHECK',
+            script: [
+                $class: 'GroovyScript',
+                script: [
+                    script:
+                    import static groovy.io.FileType.DIRECTORIES
+                    def list = []
+                    new File('//Users/ravi/Desktop').eachFileRecurse (DIRECTORIES) { file ->
+                        list << file.name
+                    }
+                    return list
+                ]
+            ]]
+    ])
+])
+pipeline {
+   agent any
+   
+   
+   stages {
+      stage('Stage1'){
+         steps{
+            script{
+               echo "${currentBuild.projectName}"
+            }
+         }
+      }
+
+   } 
+}
