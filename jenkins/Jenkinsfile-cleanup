@@ -33,12 +33,13 @@ pipeline {
                 if (params.CHECK == null) {
                         currentBuild.result = 'FAILURE'
                         error("CHECK parameter is not provided.")
+                } else {
+                    str = env.CHECK.split(',')
+                    for (String values in str){
+                        echo "Deleting $values"
+                        sh "cd /Users/ravi/Desktop/J/SAP && rm -rf $values"
                     }
-                str = env.CHECK.split(',')
-                for (String values in str){
-                    echo "Deleting $values"
-                    sh "cd /Users/ravi/Desktop/J/SAP && rm -rf $values"
-                }
+                }  
             }
          }
       }
