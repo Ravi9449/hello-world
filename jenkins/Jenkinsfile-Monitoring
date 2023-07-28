@@ -14,13 +14,8 @@ pipeline {
                     def threshold = 80
 
                     // Check if disk usage is more than the threshold
-                    if (diskUsage > threshold) {
-                        // Send an email notification
-                        emailext body: "Disk space usage in /home/build is above 80%. Current usage: ${diskUsage}%.",
-                        mimeType: 'text/html',
-                        subject: "Disk Space Alert",
-                        to: "raviteja.m360@gmail.com",
-                        replyTo: "raviteja.m360@gmail.com"                      
+                    if (diskUsage > threshold) {  
+                        mail body: "Disk space usage in /home/build is above 80%. Current usage: ${diskUsage}%.", subject: "Disk Space Alert", to: "raviteja.m360@gmail.com"             
                     }
                 }
             }
