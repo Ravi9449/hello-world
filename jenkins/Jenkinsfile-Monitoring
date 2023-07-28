@@ -6,6 +6,7 @@ pipeline {
         stage ('Check'){
             steps{
                 script{
+                    def mailRecipients = "your_recipients@company.com"
                     // Get the disk usage of /home/build in percentage
                     def diskUsage = sh(script: 'df -h /dev | awk \'NR==2 { print $5 }\' | sed \'s/%//\'', returnStdout: true).trim().toInteger()
                     echo "${diskUsage}"
@@ -15,11 +16,12 @@ pipeline {
                     // Check if disk usage is more than the threshold
                     if (diskUsage > threshold) {
                         // Send an email notification
-                        emailext (
-                            subject: "Disk Space Alert",
-                            body: "Disk space usage in /dev is above 80%. Current usage: ${diskUsage}%.",
-                            to: "raviteja.m360@gmail.com",
-                        )
+                        emailext body: "Disk space usage in /home/build is above 80%. Current usage: ${diskUsage}%.",
+                        mimeType: 'text/html',
+                        subject: "Disk Space Alert",
+                        to: "raviteja.m360@gmail.com",
+                        replyTo: "raviteja.m360@gmail.com",
+                        recipientProviders: [[$class: 'CulpritsRecipientProvider']]                        
                     }
                 }
             }
