@@ -31,9 +31,12 @@ pipeline {
             script{
                 echo "${params.CHECK}"
                 //sh "cd /Users/ravi/Desktop/J/SAP && rm -rf ${params.CHECK}"
-                for(def sub : params.CHECK.split(',')) {
-                    echo "${params.sub}"
-                }
+                // for(def sub : params.CHECK.split(',')) {
+                //     echo "${params.sub}"
+                // }
+                str = env.CHECK.split(',')
+                for (String values :str)
+                echo "$values"
             }
          }
       }
