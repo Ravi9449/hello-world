@@ -30,6 +30,10 @@ pipeline {
          steps{
             script{
                 echo "${params.CHECK}"
+                if (params.CHECK == null) {
+                        currentBuild.result = 'FAILURE'
+                        error("CHECK parameter is not provided.")
+                    }
                 str = env.CHECK.split(',')
                 for (String values in str){
                     echo "Deleting $values"
