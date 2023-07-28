@@ -18,7 +18,7 @@ pipeline {
                         emailext (
                             subject: "Disk Space Alert",
                             body: "Disk space usage in /dev is above 80%. Current usage: ${diskUsage}%.",
-                            to: "raviteja.m360@gmail.com"
+                            to: "raviteja.m360@gmail.com",
                             recipientProviders: [[$class: 'DevelopersRecipientProvider']]
                         )
                     }
