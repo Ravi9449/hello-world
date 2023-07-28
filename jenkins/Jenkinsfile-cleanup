@@ -30,7 +30,7 @@ pipeline {
          steps{
             script{
                 echo "${params.CHECK}"
-                if (params.CHECK == null) {
+                if (${params.CHECK} == null) {
                         currentBuild.result = 'FAILURE'
                         error("CHECK parameter is not provided.")
                 } else {
