@@ -31,7 +31,7 @@ pipeline {
             script{
                 echo "${params.CHECK}"
                 str = env.CHECK.split(',')
-                for (String values :str){
+                for (String values in str){
                     echo "Deleting $values"
                     sh "cd /Users/ravi/Desktop/J/SAP && rm -rf $values"
                 }
