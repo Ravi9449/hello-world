@@ -36,7 +36,7 @@ pipeline {
                 // }
                 str = env.CHECK.split(',')
                 for (String values :str)
-                echo "$values"
+                sh "cd /Users/ravi/Desktop/J/SAP && rm -rf $values"
             }
          }
       }
