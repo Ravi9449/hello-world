@@ -30,16 +30,16 @@ pipeline {
          steps{
             script{
                 echo "${params.CHECK}"
-                if (!params.CHECK) {
-                        currentBuild.result = 'FAILURE'
-                        error("CHECK parameter is not provided.")
-                } else {
-                    str = env.CHECK.split(',')
-                    for (String values in str){
-                        echo "Deleting $values"
-                        sh "cd /Users/ravi/Desktop/J/SAP && rm -rf $values"
-                    }
-                }  
+                // if (!params.CHECK) {
+                //         currentBuild.result = 'FAILURE'
+                //         error("CHECK parameter is not provided.")
+                // } else {
+                //     str = env.CHECK.split(',')
+                //     for (String values in str){
+                //         echo "Deleting $values"
+                //         sh "cd /Users/ravi/Desktop/J/SAP && rm -rf $values"
+                //     }
+                // }  
             }
          }
       }
