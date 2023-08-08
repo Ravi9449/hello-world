@@ -24,13 +24,14 @@ properties([
 
 pipeline {
    agent any
-   
+   environment {
+        isTriggeredByCron = currentBuild.getBuildCauses('hudson.triggers.TimerTrigger$TimerTriggerCause')
+   }
    
    stages {
       stage('Stage1'){
          steps{
             script{
-                isTriggeredByCron = currentBuild.getBuildCauses('hudson.triggers.TimerTrigger$TimerTriggerCause')
                 echo "${params.CHECK}"
                 // if (!params.CHECK) {
                 //         currentBuild.result = 'FAILURE'
