@@ -43,6 +43,14 @@ pipeline {
             }
          }
       }
+      stage ('Cron job'){
+        when { expression { isTriggeredByCron } }
+        steps{
+            script{
+                echo "check"
+            }
+        }
+      }
 
    } 
 }
