@@ -1,5 +1,18 @@
 #!groovy
+parameters {
+        activeChoiceParam('Namespace') {
+            description('Select the Namespace')
+            filterable(true)
+            choiceType('PT_SINGLE_SELECT')
+            groovyScript("""
+                def environments = ['test', 'integration']
+                return environments
+            """)
+            fallbackValue('Development')
+        }
 
+        
+}
 pipeline {
    agent any
    stages {
