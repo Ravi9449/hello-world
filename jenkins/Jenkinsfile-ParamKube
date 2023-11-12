@@ -1,5 +1,8 @@
 #!groovy
-parameters {
+
+pipeline {
+   agent any
+   parameters {
         activeChoiceParam('Namespace') {
             description('Select the Namespace')
             filterable(true)
@@ -10,11 +13,7 @@ parameters {
             """)
             fallbackValue('Development')
         }
-
-        
-}
-pipeline {
-   agent any
+    }
    stages {
       stage('Stage1'){
          steps{
