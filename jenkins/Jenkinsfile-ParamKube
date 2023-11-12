@@ -1,0 +1,17 @@
+#!groovy
+
+pipeline {
+   agent any
+   stages {
+      stage('Stage1'){
+         steps{
+            script{
+               echo "${currentBuild.projectName}"
+            }
+         }
+      }
+
+   } 
+}
+
+ 
