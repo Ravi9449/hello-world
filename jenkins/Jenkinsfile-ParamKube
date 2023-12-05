@@ -19,7 +19,7 @@ pipeline {
             steps {
                 script {
                     sh "git add ."
-                    sh "git commit -m "Check"
+                    sh "git commit -m "Check""
                     sh "git push"
                 }
             }
