@@ -11,15 +11,15 @@ pipeline {
         stage('Stage1'){
             steps{
                 script{
-                    sh "kubectl create secret generic check-secret --dry-run=client --from-literal=username=${params.USERNAME} -o yaml | \
-                        kubeseal --merge-into mergeinto/mysealedsecret.json"
-                    sh "kubectl apply -f mergeinto/mysealedsecret.json"
+                    sh "touch demo.txt"
                 }
             }
         }
         stage('Push to remote') {
             steps {
                 script {
+                    sh "git add ."
+                    sh "git commit -m "Check"
                     sh "git push"
                 }
             }
