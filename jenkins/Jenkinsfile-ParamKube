@@ -18,7 +18,7 @@ pipeline {
         stage('Push to remote') {
             steps {
                 script {
-                    sh 'git add . && git commit -m "Check" && git push'
+                    sh 'git add . && git commit -m "Check" && git push origin HEAD:master'
                 }
             }
         }
