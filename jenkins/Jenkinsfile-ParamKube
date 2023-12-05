@@ -20,7 +20,7 @@ pipeline {
         stage('Push to remote') {
             steps {
                 script {
-                    git push
+                    sh "git push"
                 }
             }
         }
