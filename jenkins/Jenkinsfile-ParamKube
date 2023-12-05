@@ -1,32 +1,30 @@
 #!groovy
-properties([
-    parameters([
-        [$class: 'ChoiceParameter',
-            choiceType: 'PT_CHECKBOX',
-            name: 'NAMESPACE',
-            script: [
-                $class: 'GroovyScript',
-                script: [
-                    script:
-                    '''
-                        return["test","integration"]
-                    '''
-                ]
-            ]]
-    ])
-])
-pipeline {
-   agent any
-   stages {
-      stage('Stage1'){
-         steps{
-            script{
-               echo "${currentBuild.projectName}"
-            }
-         }
-      }
 
-   } 
+pipeline {
+
+   agent any
+   parameters {
+        string(name: 'USERNAME', defaultValue: 'production', description: 'Enter the target environment (e.g., development, staging, production)')
+    }
+
+    stages {
+        stage('Stage1'){
+            steps{
+                script{
+                    sh "kubectl create secret generic check-secret --dry-run=client --from-literal=username=${params.USERNAME} -o yaml | \
+                        kubeseal --merge-into mergeinto/mysealedsecret.json"
+                    sh "kubectl apply -f mergeinto/mysealedsecret.json"
+                }
+            }
+        }
+        stage('Push to remote') {
+            steps {
+                script {
+                    git push
+                }
+            }
+        }
+    } 
 }
 
  
